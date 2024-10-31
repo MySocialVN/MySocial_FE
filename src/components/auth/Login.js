@@ -24,8 +24,10 @@ const Login = () => {
     const [loginMessage, setLoginMessage] = useState('');
     const navigate = useNavigate();
 
+
     useEffect(() => {
         document.body.style.overflow = 'hidden';
+        document.title = "Đăng nhập";
 
         const message = localStorage.getItem('authMessage') || localStorage.getItem('loginMessage');
         if (message) {
@@ -91,17 +93,24 @@ const Login = () => {
         navigate('/register');
     };
 
+
     return (
         <MDBContainer>
             <div className="nav-header bg-transparent shadow-none border-0">
                 <div className="nav-top w-100 d-flex align-items-center justify-content-between">
-                    <a href="index.html" className="d-flex align-items-center">
-                        <i className="feather-zap text-success display1-size me-2"></i>
-                        <span className="fredoka-font ls-3 fw-600 text-current font-xxl logo-text mb-0">Sociala</span>
-                    </a>
+                    <Link to="/home">
+                        <img
+                            src="https://firebasestorage.googleapis.com/v0/b/home-dn.appspot.com/o/favicon.png?alt=media&token=a8879899-7304-4fc7-a67a-656e1f8acb67"
+                            alt="Sociala Icon"
+                            className="icon-image me-2 ms-0 mb-3"
+                            style={{width: '40px', height: '40px'}} // Thay đổi kích thước theo nhu cầu
+                        />
+                        <span
+                            className="justify-content-center text-center d-inline-block fredoka-font ls-3 fw-600 font-xxl logo-text mb-0"
+                        >Sociala                </span>
+                    </Link>
                     <div>
-                        <a href="#" className="btn btn-success me-2">Login</a>
-                        <a href="#" className="btn btn-info">Register</a>
+                        <Link to={"/register"} className="btn btn-success" >Đăng ký</Link>
                     </div>
                 </div>
             </div>
@@ -123,13 +132,20 @@ const Login = () => {
                         backdropFilter: 'blur(10px)',
                         marginTop: '-100px'
                     }}>
-                        <MDBCardBody className='p-5 shadow-5 text-center'>
-                            <a href="index.html">
-                                <i className="feather-zap text-success display1-size me-2 ms-0"></i>
-                                <span
-                                    className="d-inline-block fredoka-font ls-3 fw-600 text-current font-xxl logo-text mb-0">Sociala. </span>
-                            </a>
-
+                        <MDBCardBody className='p-5 shadow-5'>
+                            <MDBCol className="text-center">
+                                <Link to="/home">
+                                    <img
+                                        src="https://firebasestorage.googleapis.com/v0/b/home-dn.appspot.com/o/favicon.png?alt=media&token=a8879899-7304-4fc7-a67a-656e1f8acb67"
+                                        alt="Sociala Icon"
+                                        className="icon-image me-2 ms-0 mb-3"
+                                        style={{width: '40px', height: '40px'}} // Thay đổi kích thước theo nhu cầu
+                                    />
+                                    <span
+                                        className="justify-content-center text-center d-inline-block fredoka-font ls-3 fw-600 font-xxl logo-text mb-0"
+                                    >Sociala                </span>
+                                </Link>
+                            </MDBCol>
                             {error && <p className="text-danger">{error}</p>}
                             <div className="text-left mb-2">
                                 <label htmlFor='username'>Tên tài khoản</label>
@@ -190,7 +206,6 @@ const Login = () => {
                     </MDBCard>
                 </MDBCol>
             </MDBRow>
-
 
         </MDBContainer>
     );

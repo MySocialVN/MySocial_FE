@@ -32,7 +32,7 @@
     margin-right: .5rem !important
 }
 .ms-0 {
-    margin-left: 0 !important
+    margin-left: 0
 }
 .d-inline-block {
     display: inline-block !important
@@ -53,10 +53,7 @@
     line-height: 90px;
     transition: all .4s ease
 }
-.mdb-col-custom {
-    flex: 0 0 66.67%; /* Chiếm 2/3 bề ngang */
-    max-width: 66.67%;
-}
+
 .form-group .style2-input::-webkit-input-placeholder {
     font-size: 14px;
     font-weight: 600;
@@ -65,5 +62,6 @@
 }
 
 .bg-facebook {
-    background-color: #0d66ff !important
+    background-color: #0d66ff !important;
+
 }
