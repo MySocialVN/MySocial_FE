@@ -3,8 +3,9 @@ import { BrowserRouter as Router, Route, Routes, Outlet } from 'react-router-dom
 import {AuthProvider} from "./components/auth/AuthContext";
 import Login from "./components/auth/Login";
 import 'bootstrap/dist/css/bootstrap.css'
+import Register from "./components/account/Register";
 
-const AdminLayout = () => (
+const LoginLayout = () => (
     <>
       <Outlet /> {/* Không có Header và Footer */}
     </>
@@ -15,8 +16,9 @@ function App() {
           <Router>
               <Routes>
                   {/* Các route dùng MainLayout */}
-                  <Route element={<AdminLayout />}>
+                  <Route element={<LoginLayout />}>
                       <Route path="/login" element={<Login />} />
+                      <Route path="/register" element={<Register/>}/>
                   </Route>
               </Routes>
           </Router>
