@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from 'axios';
-import { useNavigate, Link } from 'react-router-dom';
-import { useAuth } from './AuthContext';
+import {useNavigate, Link} from 'react-router-dom';
+import {useAuth} from './AuthContext';
 import './Login.css';
 
 import {
@@ -16,7 +16,7 @@ import {
 } from 'mdb-react-ui-kit';
 
 const Login = () => {
-    const { login } = useAuth();
+    const {login} = useAuth();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -51,16 +51,14 @@ const Login = () => {
         setLoading(true);
 
         try {
-            const response = await axios.post('http://localhost:8080/api/login', { username, password });
-            const { id, token, authorities } = response.data;
+            const response = await axios.post('http://localhost:8080/api/login', {username, password});
+            const {id, token, authorities} = response.data;
             const roles = authorities.map(auth => auth.authority);
 
             login(username, roles, id, token);
             setPassword('');
 
-            if (roles.includes('ROLE_HOST')) {
-                navigate('/host/dashboard');
-            } else if (roles.includes('ROLE_ADMIN')) {
+            if (roles.includes('ROLE_ADMIN')) {
                 navigate('/admin/dashboard');
             } else {
                 navigate('/home');
@@ -94,19 +92,44 @@ const Login = () => {
     };
 
     return (
-        <MDBContainer fluid className='my-5'>
+        <MDBContainer>
+            <div className="nav-header bg-transparent shadow-none border-0">
+                <div className="nav-top w-100 d-flex align-items-center justify-content-between">
+                    <a href="index.html" className="d-flex align-items-center">
+                        <i className="feather-zap text-success display1-size me-2"></i>
+                        <span className="fredoka-font ls-3 fw-600 text-current font-xxl logo-text mb-0">Sociala</span>
+                    </a>
+                    <div>
+                        <a href="#" className="btn btn-success me-2">Login</a>
+                        <a href="#" className="btn btn-info">Register</a>
+                    </div>
+                </div>
+            </div>
+
             <MDBRow className='g-0 align-items-center'>
-                <MDBCol col='6' style={{ backgroundImage: 'url(https://luxurydanang.muongthanh.com/images/login-banner.png)', backgroundSize: 'cover', backgroundPosition: 'center', height: '100vh' }}></MDBCol>
-                <MDBCol col='6'>
-                    <MDBCard className='cascading-left' style={{ background: 'hsla(0, 0%, 100%, 0.55)', backdropFilter: 'blur(30px)', marginTop: '-50px' }}>
+                <MDBCol style={{
+                    flex: '0 0 66.67%', // Chiếm 2/3 chiều ngang
+                    maxWidth: '66.67%', // Giới hạn chiều rộng tối đa
+                    backgroundImage: 'url(https://firebasestorage.googleapis.com/v0/b/home-dn.appspot.com/o/login-bg.jpg?alt=media&token=f51f751d-a753-448b-9da6-2bd9deb074db)',
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    height: '100vh'
+                }}></MDBCol>
+
+                {/* Phần form đăng nhập chiếm 4 cột */}
+                <MDBCol col='4'>
+                    <MDBCard className='cascading-left' style={{
+                        background: 'hsla(0, 0%, 100%, 0.55)',
+                        backdropFilter: 'blur(10px)',
+                        marginTop: '-100px'
+                    }}>
                         <MDBCardBody className='p-5 shadow-5 text-center'>
-                            <Link to="/home">
-                                <img
-                                    src="https://static.chotot.com/storage/APP_WRAPPER/logo/pty-logo-appwrapper.png"
-                                    alt="Chợ Tốt"
-                                    style={{ width: '300px', cursor: 'pointer',marginLeft: 100 , marginRight: 'auto',marginBottom:50 }}
-                                />
-                            </Link>
+                            <a href="index.html">
+                                <i className="feather-zap text-success display1-size me-2 ms-0"></i>
+                                <span
+                                    className="d-inline-block fredoka-font ls-3 fw-600 text-current font-xxl logo-text mb-0">Sociala. </span>
+                            </a>
+
                             {error && <p className="text-danger">{error}</p>}
                             <div className="text-left mb-2">
                                 <label htmlFor='username'>Tên tài khoản</label>
@@ -130,12 +153,29 @@ const Login = () => {
                                 onChange={(e) => setPassword(e.target.value)}
                                 onKeyPress={handleKeyPress}
                             />
-                            <button className="btn btn-primary w-100" type="button" onClick={handleLogin}>Đăng nhập</button>
+                            <button className="btn btn-primary w-100" type="button" onClick={handleLogin}>Đăng nhập
+                            </button>
                             <div className="text-center">
                                 <p>hoặc đăng nhập bằng:</p>
-                                {/* Increase button size */}
-                                <MDBBtn onClick={handleGoogleLogin} tag='a' color='none' className='mx-3 btn-lg' style={{ color: '#1266f1', padding: '10px 20px' }}>
-                                    <MDBIcon fab icon='google' size="lg" />
+                                <MDBBtn
+                                    onClick={handleGoogleLogin}
+                                    tag='a'
+                                    className='mx-3 btn-lg text-left style2-input text-white fw-600 bg-facebook border-0'
+                                    style={{
+                                        padding: '5px 10px', // Điều chỉnh padding để nút rộng hơn
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center', // Căn giữa nội dung
+                                        backgroundColor: '#4285F4', // Màu xanh Google
+                                        borderRadius: '5px' // Góc bo tròn
+                                    }}
+                                >
+                                    <img
+                                        src="https://firebasestorage.googleapis.com/v0/b/home-dn.appspot.com/o/icon-1.png?alt=media&token=9991f3df-3cdb-4748-b67b-a5df7881e710"
+                                        alt="icon"
+                                        className="ms-2 w30 mb-1 me-3"
+                                    />
+                                    Sign in with Google
                                 </MDBBtn>
                             </div>
                             <div className="mt-3 text-center">
@@ -150,6 +190,8 @@ const Login = () => {
                     </MDBCard>
                 </MDBCol>
             </MDBRow>
+
+
         </MDBContainer>
     );
 };

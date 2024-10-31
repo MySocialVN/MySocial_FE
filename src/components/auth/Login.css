@@ -1,10 +1,69 @@
 .cascading-right {
 
-    margin-left: -30px;
+    margin-left: 30px;
 }
 
 @media (max-width: 500px) {
     .cascading-right {
         margin-right: 0;
     }
+}
+.main-wrap, .main-wrapper {
+    opacity: 1;
+    transition: all .25s ease-in;
+    overflow: hidden;
+    position: relative;
+    z-index: 1
+}
+
+.feather-zap:before {
+    content: "\ea06";
+}
+.feather-zap-off:before {
+    content: "\ea07";
+}
+.text-success {
+    color: #10d876 !important
+}
+.display1-size {
+    font-size: 36px !important
+}
+.me-2 {
+    margin-right: .5rem !important
+}
+.ms-0 {
+    margin-left: 0 !important
+}
+.d-inline-block {
+    display: inline-block !important
+}
+.fredoka-font {
+    font-family: "Fredoka One", cursive
+}
+.ls-3 {
+    letter-spacing: 1px
+}
+.fw-600 {
+     font-weight: 600 !important
+ }
+.font-xxl {
+    font-size: 32px !important
+}
+.nav-header .nav-top a .logo-text {
+    line-height: 90px;
+    transition: all .4s ease
+}
+.mdb-col-custom {
+    flex: 0 0 66.67%; /* Chiếm 2/3 bề ngang */
+    max-width: 66.67%;
+}
+.form-group .style2-input::-webkit-input-placeholder {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 60px
+}
+
+.bg-facebook {
+    background-color: #0d66ff !important
 }
