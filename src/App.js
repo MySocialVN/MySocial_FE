@@ -4,10 +4,19 @@ import {AuthProvider} from "./components/auth/AuthContext";
 import Login from "./components/auth/Login";
 import 'bootstrap/dist/css/bootstrap.css'
 import Register from "./components/account/Register";
+import Header from "./components/layout/Header";
+import Home from "./components/home/Home";
+import ViewUserProfile from "./components/user/ViewUserProfile";
 
 const LoginLayout = () => (
     <>
       <Outlet /> {/* Không có Header và Footer */}
+    </>
+);
+const LoginMain = () => (
+    <>
+        <Header></Header>
+        <Outlet /> {/* Không có Header và Footer */}
     </>
 );
 function App() {
@@ -19,6 +28,11 @@ function App() {
                   <Route element={<LoginLayout />}>
                       <Route path="/login" element={<Login />} />
                       <Route path="/register" element={<Register/>}/>
+                  </Route>
+                  <Route element={<LoginMain />}>
+                      <Route path="/home" element={<Home />} />
+                      <Route path="/user/view-profile" element={<ViewUserProfile />} />
+
                   </Route>
               </Routes>
           </Router>

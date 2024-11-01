@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { useNavigate } from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { MDBBtn, MDBContainer, MDBCard, MDBCardBody, MDBInput, MDBRow, MDBCol } from 'mdb-react-ui-kit';
@@ -92,7 +92,25 @@ const Register = () => {
     };
 
     return (
-        <MDBContainer fluid className="my-5">
+        <MDBContainer>
+            <div className="nav-header bg-transparent shadow-none border-0">
+                <div className="nav-top w-100 d-flex align-items-center justify-content-between">
+                    <Link to="/home">
+                        <img
+                            src="https://firebasestorage.googleapis.com/v0/b/home-dn.appspot.com/o/favicon.png?alt=media&token=a8879899-7304-4fc7-a67a-656e1f8acb67"
+                            alt="Sociala Icon"
+                            className="icon-image me-2 ms-0 mb-3"
+                            style={{width: '40px', height: '40px'}} // Thay đổi kích thước theo nhu cầu
+                        />
+                        <span
+                            className="justify-content-center text-center d-inline-block fredoka-font ls-3 fw-600 font-xxl logo-text mb-0"
+                        >Sociala                </span>
+                    </Link>
+                    <div>
+                        <Link to={"/login"} className="btn btn-info" >Đăng Nhập</Link>
+                    </div>
+                </div>
+            </div>
             <MDBRow className="g-0 align-items-center">
                 <MDBCol style={{
                     flex: '0 0 66.67%', // Chiếm 2/3 chiều ngang
@@ -102,8 +120,12 @@ const Register = () => {
                     backgroundPosition: 'center',
                     height: '100vh'
                 }}></MDBCol>                <MDBCol col="6">
-                    <MDBCard className="cascading-left" style={{ background: 'hsla(0, 0%, 100%, 0.55)', backdropFilter: 'blur(30px)', marginTop: '-50px' }}>
-                        <MDBCardBody className="p-5 shadow-5 text-center">
+                <MDBCard className='cascading-left' style={{
+                    background: 'hsla(0, 0%, 100%, 0.55)',
+                    backdropFilter: 'blur(10px)',
+                    marginTop: '80px'
+                }}>
+                    <MDBCardBody className="p-5 shadow-5">
                             <h1 className="text-center mb-4">Đăng ký</h1>
                             <form onSubmit={handleSubmit}>
                                 {/* Username */}
@@ -180,14 +202,14 @@ const Register = () => {
                                     {formErrors.phoneNumber && <small className="text-danger">{formErrors.phoneNumber}</small>}
                                 </div>
                                 <div className="text-left mb-2">
-                                    <label htmlFor='birthday'>Ngày sinh</label>
+                                    <label htmlFor='birthday'>Ngày sinh </label>
                                     <DatePicker
                                         selected={formValues.birthday}
                                         onChange={handleDateChange}
                                         dateFormat="dd-MM-yyyy"
                                         maxDate={new Date()} // Giới hạn chọn ngày trong quá khứ
                                         placeholderText="Chọn ngày sinh"
-                                        className="form-control"
+                                        className="form-control m-3 col-12"
                                         id="birthday"
                                     />
                                     {formErrors.birthday && <small className="text-danger">{formErrors.birthday}</small>}
