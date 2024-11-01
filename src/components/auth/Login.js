@@ -130,7 +130,7 @@ const Login = () => {
                     <MDBCard className='cascading-left' style={{
                         background: 'hsla(0, 0%, 100%, 0.55)',
                         backdropFilter: 'blur(10px)',
-                        marginTop: '-100px'
+                        marginTop: '80px'
                     }}>
                         <MDBCardBody className='p-5 shadow-5'>
                             <MDBCol className="text-center">
