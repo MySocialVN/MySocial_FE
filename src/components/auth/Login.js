@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import {useNavigate, Link} from 'react-router-dom';
 import {useAuth} from './AuthContext';
-import './Login.css';
+import '../css/Login.css';
 
 import {
     MDBBtn,
@@ -82,6 +82,7 @@ const Login = () => {
     const handleGoogleLogin = () => {
         window.location.href = 'http://localhost:8080/auth/v1/SSO/google';
     };
+
 
     const handleKeyPress = (e) => {
         if (e.key === 'Enter') {
@@ -173,7 +174,7 @@ const Login = () => {
                             </button>
                             <div className="text-center">
                                 <p>hoặc đăng nhập bằng:</p>
-                                <MDBBtn
+                                <button
                                     onClick={handleGoogleLogin}
                                     tag='a'
                                     className='mx-3 btn-lg text-left style2-input text-white fw-600 bg-facebook border-0'
@@ -192,7 +193,7 @@ const Login = () => {
                                         className="ms-2 w30 mb-1 me-3"
                                     />
                                     Sign in with Google
-                                </MDBBtn>
+                                </button>
                             </div>
                             <div className="mt-3 text-center">
                                 <p>
