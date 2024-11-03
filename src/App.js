@@ -9,7 +9,7 @@ import Home from "./components/home/Home";
 import ViewUserProfile from "./components/user/ViewUserProfile";
 import SideBar from "./components/layout/SideBar";
 import ChangePassword from "./components/user/ChangePassword";
-import './App.css'
+import './components/user/App.css'
 import UserSearchResults from "./components/user/UserSearchResults";
 const LoginLayout = () => (
     <>

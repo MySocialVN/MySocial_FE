@@ -143,6 +143,7 @@ const ViewUserProfile = () => {
                                     <div className="card-body p-lg-5 p-4 w-100 border-0">
                                         <div className="row justify-content-center">
                                             <div className="col-lg-4 text-center">
+
                                                 <figure
                                                     className="avatar ms-auto me-auto mb-0 mt-2 w100 position-relative">
                                                     <img
