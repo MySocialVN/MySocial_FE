@@ -1,0 +1,164 @@
+navigation {
+    position: fixed;
+    top: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    width: 280px;
+    height: 100vh;
+    overflow: hidden;
+    background: 0 0;
+    -webkit-transition: width .25s;
+    -o-transition: width .25s;
+    transition: width .25s;
+    padding-top: calc(90px + 6px)
+}
+
+.navigation.menu-active {
+    width: 90px
+}
+
+.navigation.menu-active .nav-content {
+    width: 90px;
+    padding-left: 10px;
+    padding-right: 10px
+}
+
+.navigation.menu-active .nav-content ul li > a span {
+    margin-left: 30px
+}
+
+.navigation.menu-active .card, .navigation.menu-active .nav-caption span, .navigation.menu-active .nav-content ul li > a span.circle-count, .navigation.menu-active .nav-top a .logo-text {
+    display: none !important
+}
+
+.navigation.menu-active .nav-caption {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    text-align: center
+}
+
+.navigation.menu-active .nav-content ul.top-content li:not(.logo) a {
+    padding: 7px
+}
+
+.navigation.menu-active .nav-content ul.top-content li:not(.logo) a i {
+    padding: 13px;
+    line-height: 16px !important
+}
+
+.navigation.menu-current-color .nav-wrap {
+    background: linear-gradient(135deg, var(--theme-color), var(--theme-color-shade)) !important
+}
+
+.navigation.menu-current-color .nav-content ul li:not(.logo) a i, .navigation.menu-current-color .nav-content ul li:not(.logo) a span, .navigation.menu-current-color .nav-top a .logo-text {
+    color: #fff !important
+}
+
+.navigation.menu-current-color .nav-caption {
+    color: #fff !important;
+    opacity: .6
+}
+
+.navigation.menu-current-color .nav-content ul li > a.active {
+    background: var(--theme-color-tint) !important
+}
+
+@media (max-width: 991.98px) {
+    .navigation {
+        position: fixed;
+        top: 0;
+        left: -320px;
+        background-color: #fff !important;
+        z-index: 1000;
+        height: 100vh;
+        padding-top: 0;
+        transition: all .4s ease;
+        box-shadow: 0 1rem 3rem rgba(0, 0, 0, .18) !important
+    }
+
+    .navigation.nav-active {
+        left: 0;
+        right: 0
+    }
+}
+.scroll-bar {
+    margin-left: 0;
+    overflow-y: scroll
+}
+
+.scroll-bar::-webkit-scrollbar-track {
+    background-color: transparent
+}
+
+.scroll-bar::-webkit-scrollbar {
+    width: 2px;
+    background-color: transparent
+}
+
+.scroll-bar::-webkit-scrollbar-thumb {
+    background-color: #aaa
+}
+
+navigation .nav-content {
+    width: 280px;
+    transition: all .2s ease;
+    padding-left: 15px;
+    padding-right: 15px
+}
+
+@media (max-width: 767.98px) {
+    .navigation .nav-content {
+        width: auto
+    }
+
+    .navigation .nav-content .nav-wrap {
+        box-shadow: none !important
+    }
+}
+
+@media (min-width: 992px) {
+    .navigation .nav-content {
+        -webkit-border-radius: 0 10px 10px 0;
+        -moz-border-radius: 0 10px 10px 0;
+        border-radius: 0 10px 10px 0
+    }
+}
+
+.navigation .nav-content ul {
+    padding: 0;
+    margin: 0
+}
+
+@media (min-width: 992px) {
+    .navigation .nav-content ul {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: column;
+        -moz-box-orient: vertical;
+        -moz-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column
+    }
+}
+
+@media (min-width: 992px) {
+    .navigation .nav-content ul li.flex-lg-brackets {
+        -webkit-box-flex: 1;
+        -webkit-flex: 1;
+        -moz-box-flex: 1;
+        -ms-flex: 1;
+        flex: 1
+    }
+}
+
+.navigation .nav-content ul li:not(.logo) {
+    list-style-image: none;
+    list-style-type: none;
+    margin: 1px 5px
+}
+

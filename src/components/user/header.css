@@ -1,0 +1,73 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Đảm bảo footer luôn ở dưới cùng */
+}
+
+.header {
+    background-color: #282c34;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.header-title {
+    margin: 0;
+}
+
+.header-nav ul {
+    list-style-type: none;
+}
+
+.header-nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+.header-nav a {
+    color: white;
+    text-decoration: none;
+}
+
+.main-content-container {
+    display: flex;
+    flex: 1; /* Chiếm toàn bộ không gian còn lại */
+}
+
+.sidebar {
+    width: 200px; /* Độ rộng của sidebar */
+    background-color: #f0f0f0;
+    padding: 20px;
+}
+
+.sidebar ul {
+    list-style-type: none;
+}
+
+.sidebar ul li {
+    margin: 10px 0;
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: #333;
+}
+
+.main-content {
+    flex-grow: 1; /* Chiếm toàn bộ không gian còn lại */
+    padding: 20px;
+    background-color: #fff;
+}
+
+.footer {
+    background-color: #282c34;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
