@@ -61,7 +61,6 @@
     transition: all .25s ease-in;
     overflow: hidden;
     position: relative;
-    z-index: 1
 }
 @media (min-width: 991px) {
     .navbar-collapse {

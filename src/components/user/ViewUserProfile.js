@@ -2,12 +2,22 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from "react-router-dom";
 import { API_URL } from "../config/Constant";
-import { toast } from "react-toastify";
+import {toast, ToastContainer} from "react-toastify";
+import {uploadImageToFirebase} from "../config/FirebaseUpload";
+import 'bootstrap/dist/css/bootstrap.css'
+import './header.css'
+import {ArrowLeftOutlined, HomeOutlined} from "@ant-design/icons";
+import {Button, Card} from "antd";
+import Title from "antd/es/skeleton/Title";
+
+
 
 const ViewUserProfile = () => {
     const [userProfile, setUserProfile] = useState(null);
     const [error, setError] = useState({});
     const navigate = useNavigate();
+    const [selectedFile, setSelectedFile] = useState(null);
+
 
     useEffect(() => {
         const fetchUserProfile = async () => {
@@ -87,35 +97,76 @@ const ViewUserProfile = () => {
         }
     };
 
+    const handleUpload = async (e) => {
+        const file = e.target.files[0];  // Lấy file ảnh được chọn
+        setSelectedFile(file);  // Lưu vào state tạm thời
+
+        if (file) {
+            try {
+                const avatarUrl = await uploadImageToFirebase(file);  // Upload ảnh và lấy URL
+                setUserProfile(prevState => ({
+                    ...prevState,
+                    avatar: avatarUrl  // Cập nhật URL ảnh vào profile
+                }));
+                toast.success('Upload ảnh thành công!', {position: 'top-right'});
+            } catch (err) {
+                toast.error('Có lỗi xảy ra khi upload ảnh!', {position: 'top-right'});
+                console.error('Error uploading avatar:', err);
+            }
+        }
+    };
+
     return (
         <div>
-            <div className="main-content bg-lightblue theme-dark-bg right-chat-active">
+
+            <div className="main-content bg-lightblue theme-dark-bg right-chat-active" >
+
                 <div className="middle-sidebar-bottom">
                     <div className="middle-sidebar-left">
                         <div className="middle-wrap">
                             <div className="card w-100 border-0 bg-white shadow-xs p-0 mb-4">
-                                <div className="">
-                                    <h3 className="font-xs text-center text-red fw-800 ms-4 mb-0 mt-2">Thông Tin Chi Tiết Tài Khoản</h3>
-                                </div>
+                                <ToastContainer/>
 
-                                <div className="card-body p-lg-5 p-4 w-100 border-0">
-                                    <div className="row justify-content-center">
-                                        <div className="col-lg-4 text-center">
-                                            <figure className="avatar ms-auto me-auto mb-0 mt-2 w100">
-                                                <img
-                                                    src={userProfile.avatar}
-                                                    alt="Profile"
-                                                    className="shadow-sm rounded-3 w-100"
-                                                />
-                                            </figure>
-                                            <h2 className="fw-700 font-sm text-grey-900 mt-3">{userProfile.username}</h2>
+                                <Card
+                                    style={{ background: 'blue', border: 'none', borderRadius: '8px', padding: '16px' }}
+                                    className="d-flex align-items-center"
+                                >
+                                    <a href="default.html" className="p-2 text-center ms-3 menu-icon center-menu-icon">
+                                        <HomeOutlined className="font-lg alert-primary btn-round-lg theme-dark-bg text-current" />
+                                    </a>
+                                    <span style={{ color: 'white',  fontSize: '34px' }}>
+        Thông Tin Chi Tiết Tài Khoản
+    </span>
+                                </Card>
+
+                                <form onSubmit={handleSubmit}>
+                                    <div className="card-body p-lg-5 p-4 w-100 border-0">
+                                        <div className="row justify-content-center">
+                                            <div className="col-lg-4 text-center">
+
+                                                <figure
+                                                    className="avatar ms-auto me-auto mb-0 mt-2 w100 position-relative">
+                                                    <img
+                                                        src={userProfile.avatar}
+                                                        alt="Profile"
+                                                        className="shadow-sm rounded-circle w-100"
+                                                    />
+                                                    <input
+                                                        type="file"
+                                                        accept="image/*"
+                                                        onChange={handleUpload}
+                                                        className="position-absolute top-0 start-0 w-100 h-100 opacity-0 cursor-pointer" // Ẩn input nhưng vẫn giữ vị trí
+                                                    />
+                                                </figure>
+
+                                                <h2 className="fw-700 font-sm text-grey-900 mt-3">{userProfile.username}</h2>
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    {error.fullName && <p className="text-danger">{error.fullName}</p>}
-                                    {error.phoneNumber && <p className="text-danger">{error.phoneNumber}</p>}
+                                        {error.fullName && <p className="text-danger">{error.fullName}</p>}
+                                        {error.phoneNumber && <p className="text-danger">{error.phoneNumber}</p>}
 
-                                    <form onSubmit={handleSubmit}>
+
                                         <div className="row">
                                             <div className="col-lg-12 mb-3">
                                                 <div className="form-group">
@@ -197,10 +248,15 @@ const ViewUserProfile = () => {
                                             </div>
                                             <div className="col-lg-12">
                                                 <button type="submit" className="btn btn-warning">Lưu thay đổi</button>
+                                                <Link to="/me/change-password" className="btn btn-secondary" style={{marginLeft:"20px"}}>
+                                                    Đổi mật khẩu
+                                                </Link>
                                             </div>
+
                                         </div>
-                                    </form>
-                                </div>
+                                    </div>
+
+                                </form>
                             </div>
                         </div>
                     </div>
