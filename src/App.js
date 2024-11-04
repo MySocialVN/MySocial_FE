@@ -11,6 +11,7 @@ import SideBar from "./components/layout/SideBar";
 import ChangePassword from "./components/user/ChangePassword";
 import './components/user/App.css'
 import UserSearchResults from "./components/user/UserSearchResults";
+import UserPage from "./components/user/UserPage";
 const LoginLayout = () => (
     <>
       <Outlet /> {/* Không có Header và Footer */}
@@ -39,6 +40,8 @@ function App() {
                       <Route path="/user/view-profile" element={<ViewUserProfile />} />
                       <Route path="/me/change-password" element={<ChangePassword />} />
                       <Route path="/search/user" element={<UserSearchResults />} />
+                      <Route path="/user/me" element={<UserPage />} />
+
 
 
                   </Route>
