@@ -3199,6 +3199,10 @@ preloader {
 .btn-round-sm i {
   line-height: 35px !important
 }
+.icon-friend{
+  color: #e53935; /* Màu của icon */
+  font-size: 1.5rem;
+}
 
 .btn-round-md {
   width: 45px;

@@ -1,6 +1,52 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
+import {Link, useNavigate} from "react-router-dom";
+import {Dropdown, Menu} from "antd";
+import axios from "axios";
+import {API_URL} from "../config/Constant";
+import {UsergroupAddOutlined} from "@ant-design/icons";
 
 function SideBar() {
+    const [userProfile, setUserProfile] = useState({
+        background: '',
+        avatar: '',
+        fullName: '',
+        email:'',
+        phoneNumber:'',
+        interests: '',
+        address: '',
+        birthday: ''
+    });
+    const [error, setError] = useState({});
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const fetchUserProfile = async () => {
+            const token = localStorage.getItem('jwtToken');
+            if (!token) {
+                navigate('/login'); // Điều hướng đến trang đăng nhập nếu không có token
+                return;
+            }
+
+            try {
+                const response = await axios.get(`${API_URL}/api/users/me`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                    },
+                });
+                setUserProfile(response.data);
+            } catch (err) {
+                setError(prev => ({ ...prev, fetch: 'Error fetching user profile' }));
+                console.error('Error fetching user profile:', err);
+
+                if (err.response && err.response.status === 401) {
+                    navigate('/login'); // Điều hướng đến trang đăng nhập nếu token hết hạn hoặc không hợp lệ
+                }
+            }
+        };
+
+        fetchUserProfile();
+    }, [navigate]);
+
     return <nav className="navigation scroll-bar">
         <div className="container ps-0 pe-0">
             <div className="nav-content">
@@ -9,11 +55,28 @@ function SideBar() {
                     <div className="nav-caption fw-600 font-xssss text-grey-500"><span>New </span>Feeds</div>
                     <ul className="mb-1 top-content">
                         <li className="logo d-none d-xl-block d-lg-block"></li>
-                        <li><a href="default.html" className="nav-content-bttn open-font"><i
-                            className="feather-tv btn-round-md bg-blue-gradiant me-3"></i><span>Newsfeed</span></a>
+                        <li><Link to="user/me" className="nav-content-bttn open-font">
+                            <div className="d-flex avatar-user">
+
+                                <img
+                                    src={userProfile?.avatar || 'https://via.placeholder.com/30'}
+                                    alt="User Avatar"
+                                    className="rounded-circle bg-mini-gradiant me-3"
+                                    style={{ width: '40px', height: '40px' }}
+                                />
+
+                        </div><span>{userProfile.fullName}</span></Link>
                         </li>
-                        <li><a href="default-badge.html" className="nav-content-bttn open-font"><i
-                            className="feather-award btn-round-md bg-red-gradiant me-3"></i><span>Badges</span></a>
+                        <li>
+                            <Link
+                                to="user/me/my-friend"
+                                className="nav-content-bttn open-font"
+                            >
+                                <UsergroupAddOutlined
+                                    className="btn-round-md bg-gold-gradiant me-3"
+                                    style={{ fontSize: '18px', padding:'0px' }} // Thay đổi kích thước icon tại đây
+                                />                                <span className="friend-text">Bạn bè</span>
+                            </Link>
                         </li>
                         <li><a href="default-storie.html" className="nav-content-bttn open-font"><i
                             className="feather-globe btn-round-md bg-gold-gradiant me-3"></i><span>Explore Stories</span></a>
