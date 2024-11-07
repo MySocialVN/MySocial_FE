@@ -15,6 +15,7 @@ import MyUserPage from "./components/user/MyUserPage";
 import MyFriend from "./components/user/MyFriend";
 import HeaderUserFriend from "./components/userFriend/HeaderUserFriend";
 import UserFriend from "./components/userFriend/UserFriend";
+import CommonFriend from "./components/userFriend/CommonFriend";
 const LoginLayout = () => (
     <>
       <Outlet /> {/* Không có Header và Footer */}
@@ -48,6 +49,7 @@ function App() {
                       <Route path="/user/me/my-friend" element={<MyFriend />} />
                       <Route path="/user/profile" element={<MyFriend />} />
                       <Route path="/user/profile/:id" element={<UserFriend />} />
+                      <Route path="/user/common-friend/:friendId" element={<CommonFriend />} />
                   </Route>
               </Routes>
           </Router>

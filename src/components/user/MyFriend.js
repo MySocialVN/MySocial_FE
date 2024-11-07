@@ -75,10 +75,13 @@ const MyFriend = () => {
                                             <Link to={`/user/profile/${myFriend.id}`}>
                                                 <h4 className="fw-700 font-xsss mt-3 mb-1">{myFriend.fullName}</h4>
                                             </Link>
+                                            <Link to={`/user/common-friend/${myFriend.id}`}>
+
                                             <p className="fw-500 font-xsssss text-grey-500 mt-0 mb-3">Bạn chung: {myFriend.mutualFriendCount}</p>
-                                            <a href="#"
-                                               className="mt-0 btn pt-2 pb-2 ps-3 pe-3 lh-24 ms-1 ls-3 d-inline-block rounded-xl bg-success font-xsssss fw-700 ls-lg text-white">ADD
-                                                FRIEND</a>
+                                            </Link>
+                                            {/*<a href="#"*/}
+                                            {/*   className="mt-0 btn pt-2 pb-2 ps-3 pe-3 lh-24 ms-1 ls-3 d-inline-block rounded-xl bg-success font-xsssss fw-700 ls-lg text-white">ADD*/}
+                                            {/*    FRIEND</a>*/}
                                         </div>
                                     </div>
                                 </div>
