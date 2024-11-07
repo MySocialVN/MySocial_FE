@@ -10084,6 +10084,11 @@ textarea.form-control-lg {
   clear: both;
   content: ""
 }
+.clearfix::before {
+  display: block;
+  clear: both;
+  content: ""
+}
 
 .link-primary {
   color: #1e74fd
