@@ -13,7 +13,7 @@ import {
 const UserSearchResults = () => {
     const location = useLocation();
     const history = useNavigate();
-    const [searchTerm, setSearchTerm] = useState(new URLSearchParams(location.search).get('query') || ' ');
+    const [searchTerm, setSearchTerm] = useState(new URLSearchParams(location.search).get('query') || '');
     const [searchResults, setSearchResults] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [isModalVisible, setIsModalVisible] = useState(false);
@@ -45,14 +45,7 @@ const UserSearchResults = () => {
         }
     }, [searchTerm]);
 
-    const handleSearch = (e) => {
-        e.preventDefault();
-        const query = searchTerm.trim();
-        if (query) {
-            history.push(`/search/user?query=${encodeURIComponent(query)}`);
-            fetchSearchResults(query);
-        }
-    };
+
 
     const sendFriendRequest = async (friendId) => {
         const jwtToken = localStorage.getItem("jwtToken");
