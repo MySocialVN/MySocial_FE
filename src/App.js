@@ -5,7 +5,6 @@ import Login from "./components/auth/Login";
 import 'bootstrap/dist/css/bootstrap.css'
 import Register from "./components/account/Register";
 import Header from "./components/layout/Header";
-import Home from "./components/home/Home";
 import ViewUserProfile from "./components/user/ViewUserProfile";
 import SideBar from "./components/layout/SideBar";
 import ChangePassword from "./components/user/ChangePassword";
@@ -16,6 +15,7 @@ import MyFriend from "./components/user/MyFriend";
 import HeaderUserFriend from "./components/userFriend/HeaderUserFriend";
 import UserFriend from "./components/userFriend/UserFriend";
 import CommonFriend from "./components/userFriend/CommonFriend";
+import Home from "./components/home/Home";
 const LoginLayout = () => (
     <>
       <Outlet /> {/* Không có Header và Footer */}
@@ -41,6 +41,8 @@ function App() {
 
                   </Route>
                   <Route element={<LoginMain />}>
+                      <Route path="/ha" element={<Home />} />
+
                       <Route path="/home" element={<Home />} />
                       <Route path="/user/view-profile" element={<ViewUserProfile />} />
                       <Route path="/me/change-password" element={<ChangePassword />} />

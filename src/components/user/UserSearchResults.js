@@ -13,9 +13,9 @@ import {
 const UserSearchResults = () => {
     const location = useLocation();
     const history = useNavigate();
-    const [searchTerm, setSearchTerm] = useState(new URLSearchParams(location.search).get('query') || '');
+    const [searchTerm, setSearchTerm] = useState(new URLSearchParams(location.search).get('query') || " ");
     const [searchResults, setSearchResults] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [userToUnfriendId, setUserToUnfriendId] = useState(null);
     const [userToUnfriendFullName, setUserToUnfriendFullName] = useState(null);
